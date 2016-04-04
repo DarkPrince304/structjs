@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/DarkPrince304/structjs/issues"
   },
-  "homepage": "https://github.com/DarkPrince304/structjs#readme"
+  "homepage": "https://github.com/DarkPrince304/structjs#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
