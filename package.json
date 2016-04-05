@@ -1,8 +1,8 @@
 {
-  "name": "structjs",
+  "name": "struct--js",
   "version": "1.0.0",
   "description": "A Javascript library for using classic Data Structures",
-  "main": "src/main.js",
+  "main": "lib/struct.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/DarkPrince304/structjs#readme",
   "devDependencies": {
+    "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-rename": "^1.2.2",
