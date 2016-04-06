@@ -1,6 +1,6 @@
 {
   "name": "struct--js",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "A Javascript library for using classic Data Structures",
   "main": "index.js",
   "scripts": {
@@ -32,10 +32,10 @@
   },
   "homepage": "https://github.com/DarkPrince304/structjs#readme",
   "devDependencies": {
-    "browserify": "^13.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^1.5.3",
+    "gulp-umd": "^0.2.0"
   }
 }
