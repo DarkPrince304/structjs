@@ -1,6 +1,6 @@
 
 	'use strict'
 
-	varStruct = function() {
+	var Struct = function() {
 
 	}

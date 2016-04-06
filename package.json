@@ -1,6 +1,6 @@
 {
   "name": "struct--js",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "A Javascript library for using classic Data Structures",
   "main": "index.js",
   "scripts": {
