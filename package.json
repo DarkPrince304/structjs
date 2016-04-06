@@ -37,5 +37,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "gulp-umd": "^0.2.0"
+  },
+  "dependencies": {
+    "d3": "^3.5.16"
   }
 }
