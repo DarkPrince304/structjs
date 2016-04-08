@@ -9,7 +9,7 @@ gulp.task('default', function() {
 })
 
 gulp.task('scripts', function() {
-	gulp.src(['src/Struct.js', 'src/LinkedList.js', 'src/DoublyLinkedList.js', 'src/CircularLinkedList.js',])
+	gulp.src(['src/Struct.js', 'src/LinkedList.js', 'src/DoublyLinkedList.js', 'src/CircularLinkedList.js', 'src/BinarySearchTree.js', 'src/Draw.js'])
 		.pipe(concat('struct.js'))
 		.pipe(umd())
 		.pipe(gulp.dest('lib/'))

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html>
 <head>
 	<title>StructJS Test</title>
+<script src="../lib/struct.js"></script>
+<script src="../node_modules/d3/d3.js"></script>
 </head>
 <body>
-
+<script type="text/javascript">
+	CLL = new Struct.CircularLinkedList()
+	CLL.add(5)
+	CLL.add(8)
+	CLL.add(4)
+	CLL.add(6)
+	Struct.draw(CLL)
+</script>
 </body>
-<script src="../lib/struct.js"></script>
 </html>
