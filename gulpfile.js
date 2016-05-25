@@ -10,7 +10,7 @@ gulp.task('default', function() {
 
 gulp.task('scripts', function() {
 	gulp.src(['src/Struct.js', 'src/LinkedList.js', 'src/DoublyLinkedList.js', 'src/CircularLinkedList.js', 'src/BinarySearchTree.js', 'src/Stack.js',
-	 'src/Queue.js', 'src/SuffixTree.js', 'src/Trie.js', 'src/MaxHeap.js', 'src/Draw.js'])
+	 'src/Queue.js', 'src/SuffixTree.js', 'src/Trie.js', 'src/MaxHeap.js', 'src/MinHeap.js', 'src/Draw.js'])
 		.pipe(concat('struct.js'))
 		.pipe(umd())
 		.pipe(gulp.dest('lib/'))

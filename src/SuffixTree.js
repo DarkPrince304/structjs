@@ -1,83 +1,97 @@
+	Struct.SuffixTree = function(passedWord) {
+		this.head = {};
 
-	Struct.SuffixNode = function(char) {
-		this.data = char;
-		this.children = [];
-
-		return this;
-	}
-
-	Struct.SuffixTree = function(word) {
-
-		this.root = new Struct.SuffixNode("");
-
-		this.makeNodes = function(node, index, letters) {
-			// console.log(node)
-			if(!node.children.length) {
-
-				var current = node;
-				var hey = current;
-				for(var i = 0; i < letters.length; i++ ) {
-					// console.log(current)
-					current.children[0] = new Struct.SuffixNode(letters[i]);
-					// console.log(current.children[0])
-					current = current.children[0];
-				}
-				console.log(hey)
-				return;
-			} else {
-				for(var i = 0; i < node.children.length; i++ ) {
-					console.log("hello");
-					if ( node.children[i].data !== letters[index] ) {
-						node.children.push(new Struct.SuffixNode(letters[index]));
-						for(var i = index; i < letters.length; i++ ) {
-							node.children[0] = new Struct.SuffixNode(letters[i]);
-							node = node.children[0];
-						}
-						console.log("yo");
-						return;
-					} else {
-						this.makeNodes(node.children[i], index + 1, letters );
-						console.log("yo1");
-					}
-
-				}
-			}
-		}
+		this.validate = function(word) {
+			if((word === undefined) || (word === null)) { throw new Error('The given word is invalid.'); }
+			if (typeof word !== 'string') { throw new Error('The given word is not a string'); }
+		};
 
 		this.add = function(word) {
+			this.validate(word);
 
-			var letters = word.split("");
-/*			if(!this.root.children.length) {
+			var current = this.head;
 
-				var current = this.root;
-				var hey = current;
-				for(var i = 0; i < letters.length; i++ ) {
-					// console.log(current)
-					current.children[0] = new Struct.SuffixNode(letters[i]);
-					// console.log(current.children[0])
-					current = current.children[0];
+			for (var i = 0; i < word.length; i++) {
+				if(!(word[i] in current)) {
+					current[word[i]] = {};
 				}
-				console.log(hey);
-				return;
-			} else {*/
 
-				var now = this.root;
-				console.log(now)
-				
+				current = current[word[i]];
+			}
 
-				this.makeNodes(now, 0, letters);
+			current.$ = 1;	//word end marker
+		};
 
-			// }
+		this.hasWord = function(word) {
+			this.validate(word);
 
-		}
+			var current = this.head;
 
-		this.send = word+"#";
+			for (var i = 0; i < word.length; i++) {
+				if(!(word[i] in current)) {
+					return false;
+				}
 
-		for( var i = 0 ; i < word.length+1; i++ ) {
-			console.log(this.send);
+				current = current[word[i]];
+			}
+
+			return current.$ === 1;	//word end marker
+		};
+
+		this.remove = function(word) {
+			this.validate(word);
+
+		  var noKids = function (node) {
+		    return Object.keys(node).length === 0;
+		  };
+
+			var canDelete = function (word, index, node){
+				if (word === undefined ) { throw new Error('Bad Word'); }
+				if (index >= word.length) { throw new Error('Bad index to check for deletion.'); }
+				if (node === undefined ) { throw new Error('Bad Node at ' + index + ' for ' + word); }
+
+				if (index === word.length - 1) {
+					//last letter
+					//always delete word marker (as we are deleting word)
+					return (delete node.$) && noKids(node); //if last letter of word, should be empty.
+				} else {
+					//any other letter in word
+					//check child, and after child check, I am now empty
+					if (canDelete(word, index + 1, node[word[index + 1]])) {
+						//delete me
+						return (delete node[word[index + 1]]) && noKids(node);
+					}
+				}
+				return false;
+			};
+
+		  canDelete(word, -1, this.head);
+		};
+
+		this.sort = function() {
+			var word = '';
+			var sorted = [];
+
+		  var sortTrie = function (node, word, sorted) {
+		    for(var letter in node) {
+		      if (letter === '$') { sorted.push(word); }
+		      else {
+		        sortTrie(node[letter], word + letter, sorted);
+		      }
+		    }
+		  };
+
+			sortTrie(this.head, word, sorted);
+
+			return sorted;
+		};
+
+		this.send = passedWord;
+
+		for( var i = 0 ; i < passedWord.length; i++ ) {
 			this.add(this.send);
 			this.send = this.send.substr(1);
 		}
-		console.log(this.root);
 
-	}
+
+	};
